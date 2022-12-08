@@ -148,7 +148,6 @@ for (var j=0 ; j<4 ; j++){
 }
 }
 
-
 function endquiz(){
     // Generate post-game screen ("all done!", "your final score is ...", "enter initials:____")
     // set startquizclicks = 0, so 'start game' button works again upon returning to homepage
@@ -266,7 +265,7 @@ function highscores(){
     highscoresheading.setAttribute("style", "font-size: x-large; justify-content: center")
     document.querySelector("main").appendChild(highscoresheading)
 
-    // Ordered highscores list (constructed from 'highscorelist' object array)
+    // Construct ordered highscores list
     var rank = 0
     descendingobjects = []
     for (i=0 ; highscorelist.length > 0 ; i++){
@@ -276,15 +275,6 @@ function highscores(){
             scorelist.push(highscorelist[i].score)
         }
 
-        if (highscorelist.length = scorelist.length){
-            console.log("BOOMER")
-        }
-        else{
-            console.log("COOMER")
-        }
-
-        console.log(scorelist)
-
         var max = Math.max(...scorelist)
         var index = scorelist.indexOf(max)
         
@@ -292,49 +282,81 @@ function highscores(){
         descendingobjects.push(highscorelist[index])
         highscorelist.splice(index, 1)
     }
-    console.log(descendingobjects)
 
-    // Append Highscore elements
+    for (var i=0; i < descendingobjects.length ; i++){
+        var p = document.createElement("p")
+        p.textContent = `Rank: ${descendingobjects[i].rank}.   Name: ${descendingobjects[i].initials}.   Score:${descendingobjects[i].score}`
+        p.setAttribute("style", "width: 100%; height: 16px; background-color: #f4f4f4")
+
+        var bre = document.createElement("br")
+
+        document.querySelector("main").appendChild(bre)
+        document.querySelector("main").appendChild(p)
+    }
 
     // Go back button
+    var goback = document.createElement("input")     
+    goback.type = 'submit'
+    goback.id = 'goback'
+    goback.value = "Go Back!"
+    goback.style.height = "24px"
+
+    // breaks
+    var bre2 = document.createElement("br")
+    var bre3 = document.createElement("br")
 
     // Clear highscores button
+    var clearhigh = document.createElement("input")     
+    clearhigh.type = 'submit'
+    clearhigh.id = 'clearhigh'
+    clearhigh.value = "Clear Highscores!"
+    clearhigh.style.height = "24px"
 
-}
+    document.querySelector("main").appendChild(bre3)
+    document.querySelector("main").appendChild(goback)
+    document.querySelector("main").appendChild(bre2)
+    document.querySelector("main").appendChild(clearhigh)
 
-function homepage(){
-    // return to homepage (generate homepage screen), whether from endquiz or highscores page
+    // Event listeners for buttons
+    document.querySelector("#goback").addEventListener("click", function(){
+        location.reload(true)
+    })
+
+    document.querySelector("#clearhigh").addEventListener("click", function(){
+        localStorage.clear()
+        highscores()
+    })
 }
 
 // Create question objects and assemble them into an array
 var question1 = {
-    title: "QUESTION 1!",
-    choices: ["A1 is this", "A2", "Ahioh3", "A4jij ij j"],
-    answer: "A2"
+    title: "QUESTION 1! When doing your homework, what should you do if circumstances make it difficult to complete it on time?",
+    choices: ["Run away", "Ask for an extension!", "Change courses", "Not tell anybody"],
+    answer: "Ask for an extension!"
 }
 
 var question2 = {
-    title: "QUESTION 2!",
-    choices: ["A1", "A2", "A3", "A4"],
-    answer: "A4"
+    title: "QUESTION 2! What is the best number?",
+    choices: ["1", "2", "3", "4"],
+    answer: "4"
 }
 
 var question3 = {
-    title: "QUESTION 3!",
-    choices: ["A1", "A2", "A3", "A4"],
-    answer: "A2"
+    title: "QUESTION 3! Is homework valuable",
+    choices: ["No", "Yes", "Sometimes", "Not sure"],
+    answer: "Yes"
 }
 
 var question4 = {
-    title: "QUESTION 4!",
-    choices: ["A1", "A2", "A3", "A4"],
-    answer: "A1"
+    title: "QUESTION 4! Are these good sample questions",
+    choices: ["Yes", "Maybe", "Not sure", "Potato"],
+    answer: "Yes"
 }
 
 var question5 = {
-    title: "QUESTION 5!",
-    choices: ["A1", "A2", "A3", "A4"],
-    answer: "A3"
+    title: "QUESTION 5! Are central markers kind markers?",
+    choices: ["It's a mystery", "Sometimes!", "Yes!", "Unsure"],
+    answer: "Yes!"
 }
 
 var questions = [question1, question2, question3, question4, question5]
