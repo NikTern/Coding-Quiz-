@@ -1,8 +1,7 @@
 # Coding-Quiz-
 A coding quiz featuring DOM manipulation, use of localstorage and repsonsiveness - made from scratch!
 
-# Password-Generator
-Coding quiz! Built using HTML, CSS, Javascript.
+Built using HTML, CSS, Javascript.
 
 ## Description
 
