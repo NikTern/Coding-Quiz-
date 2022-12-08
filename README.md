@@ -12,7 +12,7 @@ This project served as an opportunity to practice JavaScript, particularly DOM m
 
 ## Installation
 
-The project can be accessed at: https://niktern.github.io/Password-Generator/
+The project can be accessed at: https://niktern.github.io/Coding-Quiz-/
 
 ## Usage
 
